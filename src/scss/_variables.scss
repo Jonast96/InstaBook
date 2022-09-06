@@ -1,0 +1,76 @@
+$white: #fff;
+$gray-100: #ebebeb;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-700: #495057;
+$gray-800: #343a40;
+$black: #000;
+
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "700": $gray-700,
+  "800": $gray-800,
+);
+
+$myWhite: #ebebeb;
+$myYellow: #ffbe0b;
+$myGray: #18191a;
+
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+$colors: (
+  "blue": $myWhite,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "black": $black,
+  "white": $white,
+  "gray": $myYellow,
+  "gray-dark": $gray-800,
+);
+
+$primary: $myWhite;
+$secondary: $myYellow;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $myGray;
+
+$nav-footer: #101c27;
+
+$list-group-border-color: rgba($yellow, 0.125);
+$font-family-sans-serif: Roboto, sans-serif;
+$list-group-bg: #e5e7d500;
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6,
+);
