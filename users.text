@@ -1,0 +1,15 @@
+User1 {
+
+    name: testuser1000
+    email: testuser1000@noroff.no
+    password: password
+
+}
+
+User2 {
+
+    name: Jon_Aastveit
+    email: jon@noroff.no
+    password: password
+    
+}

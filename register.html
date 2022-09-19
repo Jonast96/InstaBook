@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>register</title>
   </head>
 
   <body class="bg-dark">
@@ -62,46 +62,50 @@
     <main
       class="text-center login d-flex align-items-center justify-content-center text-primary"
     >
-      <form action="/profile.html" class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Register user</h1>
+        <label for="inputName" class="sr-only">Name</label>
+        <input
+          id="nameValue"
+          type="name"
+          id="inputName"
+          class="form-control mb-2"
+          placeholder="Name"
+          required=""
+        />
         <label for="inputEmail" class="sr-only">Email address</label>
         <input
           id="emailValue"
           type="email"
           id="inputEmail"
-          class="form-control emailtest"
+          class="form-control mb-2"
           placeholder="Email address"
           required=""
           autofocus=""
         />
         <label for="inputPassword" class="sr-only">Password</label>
         <input
+          id="passwordValue"
           type="password"
           id="inputPassword"
           class="form-control"
           placeholder="Password"
           required=""
         />
+
         <div class="checkbox mb-3">
           <label>
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>
-        <div class="button_div">
-          <button
-            class="me-2 btn btn_login btn-lg btn-primary btn-block"
-            type="submit"
-          >
-            Sign in
-          </button>
-          <a
-            href="/register.html"
-            class="ms-2 btn btn_register btn-lg btn-secondary btn-block"
-            type="submit"
-          >
-            Register
-          </a>
-        </div>
+
+        <button
+          href="/index.html"
+          class="btn btn_register btn-lg btn-secondary btn-block"
+          type="submit"
+        >
+          Register user
+        </button>
         <p class="mt-5 mb-3 text-muted">© InstaBook</p>
       </form>
     </main>
@@ -109,6 +113,8 @@
       © 2022 Copyright:
       <a class="text-reset fw-bold" href="index.html">InstaBook</a>
     </div>
+
+    <script src="/JS/register.mjs"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
