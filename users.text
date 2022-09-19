@@ -11,4 +11,5 @@ User2 {
     name: Jon_Aastveit
     email: jon@noroff.no
     password: password
+    
 }
