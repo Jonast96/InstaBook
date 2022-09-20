@@ -18,10 +18,8 @@ form.onsubmit = function () {
     }
 
     if (emailValue.value.includes("@noroff.no") || emailValue.value.includes("@noroff.stud.no")) {
-        console.log("success")
         registerUser(registerUrl, userToRegister)
     } else {
-        console.log("fail")
     }
 }
 
@@ -45,9 +43,7 @@ async function registerUser(url, userData) {
             body: JSON.stringify(userData)
         };
         const response = await fetch(url, postData);
-        console.log(response)
         const json = await response.json();
-        console.log(json)
     } catch (error) {
         console.log(error);
     }
