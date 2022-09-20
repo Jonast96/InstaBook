@@ -62,9 +62,3 @@ loginForm.onsubmit = function () {
     }
     loginUser(loginUrl, userToLogin)
 }
-
-
-
-
-
-//
