@@ -10,10 +10,10 @@ const registerUrl = `${baseURL}/api/v1/social/auth/register`;
 
 
 form.onsubmit = function () {
-    event.preventDefault();
+    event.preventDefault()
     const userToRegister = {
-        name: `${nameValue.value}`,
-        email: `${emailValue.value}`,
+        name: `${nameValue.value.toLowerCase()}`,
+        email: `${emailValue.value.toLowerCase()}`,
         password: `${passwordValue.value}`
     }
 
@@ -43,7 +43,9 @@ async function registerUser(url, userData) {
             body: JSON.stringify(userData)
         };
         const response = await fetch(url, postData);
+        console.log(response)
         const json = await response.json();
+        console.log(json.error)
     } catch (error) {
         console.log(error);
     }

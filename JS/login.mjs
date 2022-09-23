@@ -31,7 +31,11 @@ async function loginUser(url, userData) {
         const response = await fetch(url, postData)
         const json = await response.json()
         const userToken = json.accessToken;
+        const userName = json.name;
+        const userEmail = json.email
         localStorage.setItem('userToken', userToken)
+        localStorage.setItem('userName', userName)
+        localStorage.setItem('userEmail', userEmail)
 
 
     } catch (error) {
@@ -55,10 +59,16 @@ async function loginUser(url, userData) {
  */
 loginForm.onsubmit = function () {
     event.preventDefault()
+    if (emailValue.value.includes("@noroff.no") || emailValue.value.includes("@noroff.stud.no")) {
 
-    const userToLogin = {
-        email: `${emailValue.value}`,
-        password: `${passwordValue.value}`
+        const userToLogin = {
+            email: `${emailValue.value.toLowerCase()}`,
+            password: `${passwordValue.value.toLowerCase()}`
+        }
+        loginUser(loginUrl, userToLogin)
+
+    } else {
+        console.log("error")
     }
-    loginUser(loginUrl, userToLogin)
+
 }
