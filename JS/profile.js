@@ -55,3 +55,4 @@ function displayUserData(e) {
     displayFullName.innerHTML = `${userName}`
     displayEmail.innerHTML = `${userEmail}`
 }
+
