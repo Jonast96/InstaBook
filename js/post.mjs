@@ -1,62 +1,20 @@
-const postTitle = document.querySelector("#title");
-const postMedia = document.querySelector("#media")
-const postBody = document.querySelector(".body")
-const postForm = document.querySelector(".post_form")
+const queryString = document.location.search;
+const params = new URLSearchParams(queryString);
+const id = params.get("id");
 
-const allPostsContainer = document.querySelector(".posts_container")
-
-const baseURL = 'https://nf-api.onrender.com'
-
-const postUrl = `${baseURL}/api/v1/social/posts`;
-const allPosts = `${baseURL}/api/v1/social/posts`
 
 const userToken = localStorage.getItem("userToken")
+const baseURL = 'https://nf-api.onrender.com'
+const postsURL = `${baseURL}/api/v1/social/posts/${id}`
+
+const container = document.querySelector(".container")
 
 
+console.log(id)
 
-
-async function createPostData(url, postBody) {
+async function displayPost(url) {
   try {
 
-    const postData = {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-      body: JSON.stringify(postBody)
-    };
-    const response = await fetch(url, postData);
-    console.log(postData)
-    const json = await response.json();
-    console.log(json)
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
-postForm.onsubmit = function () {
-
-
-  const postsomething = {
-    title: `${postTitle.value}`,
-    body: `${postBody.value}`,
-    media: `${postMedia.value}`
-  }
-
-  console.log(postsomething)
-
-  createPostData(postUrl, postsomething)
-
-}
-
-
-
-
-async function displayPosts(url) {
-
-  try {
     const postData = {
       method: 'get',
       headers: {
@@ -65,31 +23,25 @@ async function displayPosts(url) {
       },
     };
     const response = await fetch(url, postData);
-    console.log(postData)
     const json = await response.json();
     console.log(json)
 
-
-
-    for (let i = 0; i < json.length; i++) {
-
-      allPostsContainer.innerHTML +=
-        `
+    container.innerHTML = `
         <div class="card mb-4 post_content post_contentbox-shadow">
-        <a href="post.html?id=${json[i].id}" class="img-container">
+        <div class="img-container">
           <img
             class="card-img-top"
             style="height: 500px"
-            src="${json[i].media}"
+            src="${json.media}"
             data-holder-rendered="true"
           />
-        </a>
+        </div>
         <div class="card-body bg-light">
           <div class="d-flex justify-content-between">
             <div>
               <div class="d-flex">
-                <h3 class="post_title">${json[i].title}</h3>
-                <p class="ms-2 small_text">${json[i].created}</p>
+                <h3 class="post_title">${json.title}</h3>
+                <p class="ms-2 small_text">${json.created}</p>
               </div>
               <a class="text-secondary post_owner" href="#">@Owner</a>
             </div>
@@ -141,12 +93,12 @@ async function displayPosts(url) {
             </div>
           </div>
           <p>
-            ${json[i].body}
+            ${json.body}
           </p>
 
           <div class="d-flex justify-content-between">
             <div>
-              <p class="post_tags">#${json[i].tags[0]} #${json[i].tags[1]} #${json[i].tags[2]}</p>
+              <p class="post_tags">#${json.tags[0]} #${json.tags[1]} #${json.tags[2]}</p>
             </div>
             <div>
               <button class="btn btn-outline-dark btn-sm">Edit</button>
@@ -157,19 +109,13 @@ async function displayPosts(url) {
           </div>
         </div>
       </div>
-`
+        `
 
-    }
+
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-
 }
 
-displayPosts(allPosts)
-
-
-
-
-
+displayPost(postsURL)
 
