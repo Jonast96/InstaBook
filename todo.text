@@ -1,0 +1,6 @@
+Login----------------
+Vis bruker json error på failed login. Viser invalid username or password.
+
+
+register--------------
+vis feil hvis bruker allerede er registrert

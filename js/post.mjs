@@ -7,7 +7,7 @@ const userToken = localStorage.getItem("userToken")
 const baseURL = 'https://nf-api.onrender.com'
 const postsURL = `${baseURL}/api/v1/social/posts/${id}`
 
-const container = document.querySelector(".container")
+const container = document.querySelector(".post_container")
 
 
 console.log(id)
@@ -26,8 +26,9 @@ async function displayPost(url) {
     const json = await response.json();
     console.log(json)
 
+
     container.innerHTML = `
-        <div class="card mb-4 post_content post_contentbox-shadow">
+        <div class="card mb-4 post_content post_contentbox-shadow ">
         <div class="img-container">
           <img
             class="card-img-top"

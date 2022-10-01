@@ -38,6 +38,8 @@ async function createPostData(url, postBody) {
 
 postForm.onsubmit = function () {
 
+  event.preventDefault()
+
 
   const postsomething = {
     title: `${postTitle.value}`,
@@ -73,7 +75,9 @@ async function displayPosts(url) {
 
     for (let i = 0; i < json.length; i++) {
 
-      allPostsContainer.innerHTML +=
+
+       if (json[i].media) {
+        allPostsContainer.innerHTML +=
         `
         <div class="card mb-4 post_content post_contentbox-shadow">
         <a href="post.html?id=${json[i].id}" class="img-container">
@@ -158,6 +162,11 @@ async function displayPosts(url) {
         </div>
       </div>
 `
+       }
+
+
+
+
 
     }
   } catch (error) {

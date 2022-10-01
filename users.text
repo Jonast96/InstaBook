@@ -1,15 +1,11 @@
-User1 {
-
-    name: testuser1000
-    email: testuser1000@noroff.no
-    password: password
-
+User1; {
+    name:Jon,
+    email;Jon@noroff.no,
+    password;Password
 }
 
-User2 {
-
-    name: Jon_Aastveit
-    email: jon@noroff.no
-    password: password
-    
+User2; {
+    name:jon96
+    email:jon96@noroff.no
+    password:password
 }

@@ -7,8 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post</title>
   </head>
-  <body>
-    <div class="container"></div>
+  <body class="post">
+    <nav class="navbar navbar-expand-lg nav-footer fixed-top px-5">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarSupportedContent"
+        >
+          <div>
+            <h3>
+              <a class="text-secondary" href="/index.html">InstaBook</a>
+            </h3>
+          </div>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+          <div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-primary"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-primary" href="/login.html"
+                  >Profile/Login</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-sm post_container"></div>
+
+    
+    <footer class="text-center text-primary p-4 nav-footer footer mt-auto py-3">
+      © 2022 Copyright:
+      <a class="text-reset fw-bold" href="index.html">InstaBook</a>
+    </footer>
     <script src="/js/post.mjs"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -29,10 +29,13 @@ async function loginUser(url, userData) {
         };
 
         const response = await fetch(url, postData)
+        console.log(response)
         const json = await response.json()
+        console.log(json)
         const userToken = json.accessToken;
         const userName = json.name;
         const userEmail = json.email
+        console.log(userEmail)
         localStorage.setItem('userToken', userToken)
         localStorage.setItem('userName', userName)
         localStorage.setItem('userEmail', userEmail)
