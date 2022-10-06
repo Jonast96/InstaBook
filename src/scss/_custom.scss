@@ -19,12 +19,20 @@ body {
 }
 
 .profile_page {
+  .post_content {
+    max-width: 400px;
+  }
   .profile_info {
     background-color: #272727;
 
-    img {
-      max-width: 250px;
+    .img_container {
+      width: 250px;
       height: 250px;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
     }
   }
 }
@@ -43,13 +51,15 @@ body {
   background-color: $nav-footer;
 }
 
-
 .small_text {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 
 .post {
-  .container {
-    min-height: 100ch;
+  .post_container {
+    min-height: 100vh;
+  }
+  .post_content {
+    height: max-content;
   }
 }

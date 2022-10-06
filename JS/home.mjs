@@ -2,18 +2,46 @@ const postTitle = document.querySelector("#title");
 const postMedia = document.querySelector("#media")
 const postBody = document.querySelector(".body")
 const postForm = document.querySelector(".post_form")
-
 const allPostsContainer = document.querySelector(".posts_container")
+const userNotLoggedIn = document.querySelector(".sign_in")
+const profileLi = document.querySelector(".profile_link_li")
+
 
 const baseURL = 'https://nf-api.onrender.com'
-
 const postUrl = `${baseURL}/api/v1/social/posts`;
 const allPosts = `${baseURL}/api/v1/social/posts`
 
 const userToken = localStorage.getItem("userToken")
 
 
+/**
+ * Checks if user is logged in
+ * @returns boolean
+ * 
+ */
+function isUserLoggedIn() {
+  if (userToken) {
+    return true
+  } else {
+    return false
+  }
+}
+isUserLoggedIn()
 
+
+function sendUserToProfile() {
+  if (isUserLoggedIn() === true) {
+    profileLi.innerHTML = `
+    <a class="nav-link text-primary" href="/profile.html"
+    >Profile/Login</a
+  >`
+
+    userNotLoggedIn.classList.replace("d-block", "d-none")
+  } else {
+    console.log("user is not logged in")
+  }
+}
+sendUserToProfile()
 
 async function createPostData(url, postBody) {
   try {
@@ -30,6 +58,7 @@ async function createPostData(url, postBody) {
     console.log(postData)
     const json = await response.json();
     console.log(json)
+    window.location.reload()
   } catch (error) {
     console.log(error);
   }
@@ -47,7 +76,6 @@ postForm.onsubmit = function () {
     media: `${postMedia.value}`
   }
 
-  console.log(postsomething)
 
   createPostData(postUrl, postsomething)
 
@@ -72,13 +100,12 @@ async function displayPosts(url) {
     console.log(json)
 
 
-
     for (let i = 0; i < json.length; i++) {
 
 
-       if (json[i].media) {
+      if (json[i].media) {
         allPostsContainer.innerHTML +=
-        `
+          `
         <div class="card mb-4 post_content post_contentbox-shadow">
         <a href="post.html?id=${json[i].id}" class="img-container">
           <img
@@ -152,17 +179,12 @@ async function displayPosts(url) {
             <div>
               <p class="post_tags">#${json[i].tags[0]} #${json[i].tags[1]} #${json[i].tags[2]}</p>
             </div>
-            <div>
-              <button class="btn btn-outline-dark btn-sm">Edit</button>
-              <button class="btn btn-outline-danger btn-sm">
-                Delete
-              </button>
-            </div>
+
           </div>
         </div>
       </div>
 `
-       }
+      }
 
 
 

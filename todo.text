@@ -1,6 +1,3 @@
-Login----------------
-Vis bruker json error på failed login. Viser invalid username or password.
+FIX TAGS 
 
-
-register--------------
-vis feil hvis bruker allerede er registrert
+ISUSERLOGGEDIN AND SEND USERTOPROFILE, ADD TO ALL PAGES

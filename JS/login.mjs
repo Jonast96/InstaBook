@@ -2,54 +2,17 @@ const loginForm = document.querySelector(".form-signin")
 const passwordValue = document.querySelector("#inputPassword")
 const emailValue = document.querySelector("#emailValue")
 
+
 const baseUrl = "https://nf-api.onrender.com"
 const loginUrl = `${baseUrl}/api/v1/social/auth/login`
-/**
- * Sends a post request to noroff API and stores token to localStorage
- * @param {string} url 
- * @param {any} userData 
- * ```js
- * loginUser(loginUrl, userToLogin)
- * 
- * userToLogin {
- *  email:email,
- *  password:password
- * }
- * ```
- */
-async function loginUser(url, userData) {
-    try {
 
-        const postData = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        };
+const wrongUsername = document.querySelector(".wrong_Email")
 
-        const response = await fetch(url, postData)
-        console.log(response)
-        const json = await response.json()
-        console.log(json)
-        const userToken = json.accessToken;
-        const userName = json.name;
-        const userEmail = json.email
-        console.log(userEmail)
-        localStorage.setItem('userToken', userToken)
-        localStorage.setItem('userName', userName)
-        localStorage.setItem('userEmail', userEmail)
-
-
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 
 /**
  * Creates userToLogin info.
- * Form validation and checks database runs loginUser function.
+ * Form validation and checks database. If username and password combination is stored on the api, user will be redirected to profile page.
  * 
  * ```js
  *  userToLogin = {
@@ -60,18 +23,53 @@ async function loginUser(url, userData) {
  * 
  * ```
  */
-loginForm.onsubmit = function () {
-    event.preventDefault()
-    if (emailValue.value.includes("@noroff.no") || emailValue.value.includes("@noroff.stud.no")) {
-
+loginForm.onsubmit = async function () {
+    try {
+        event.preventDefault()
         const userToLogin = {
             email: `${emailValue.value.toLowerCase()}`,
             password: `${passwordValue.value.toLowerCase()}`
         }
-        loginUser(loginUrl, userToLogin)
 
-    } else {
-        console.log("error")
+        const postData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userToLogin),
+        };
+
+        const response = await fetch(loginUrl, postData)
+        console.log(response)
+        const json = await response.json()
+        console.log(json)
+        sendUserDataToLocalStorage(json)
+        if (response.ok === true) {
+            wrongUsername.classList.replace("d-block", "d-none")
+            window.location.href = "profile.html"
+
+        } else {
+            wrongUsername.classList.replace("d-none", "d-block")
+
+
+        }
+    } catch (error) {
+        console.log(error)
     }
 
+}
+
+/**
+ * 
+ * Stores login information in local storage, 
+ * @param {*} json 
+ */
+function sendUserDataToLocalStorage(x) {
+    const userToken = x.accessToken;
+    const userName = x.name;
+    const userEmail = x.email
+
+    localStorage.setItem('userToken', userToken)
+    localStorage.setItem('userName', userName)
+    localStorage.setItem('userEmail', userEmail)
 }

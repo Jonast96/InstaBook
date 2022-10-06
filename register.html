@@ -9,7 +9,7 @@
   </head>
 
   <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg nav-footer fixed-top px-5">
+    <nav class="navbar navbar-expand-lg nav-footer px-5">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -59,11 +59,13 @@
         </div>
       </div>
     </nav>
+
     <main
       class="text-center login d-flex align-items-center justify-content-center text-primary"
     >
       <form class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal">Register user</h1>
+        <div class="text-danger error_message"></div>
         <label for="inputName" class="sr-only">Name</label>
         <input
           id="nameValue"
@@ -99,13 +101,22 @@
           </label>
         </div>
 
-        <button
-          href="/index.html"
-          class="btn btn_register btn-lg btn-secondary btn-block"
-          type="submit"
-        >
-          Register user
-        </button>
+        <div>
+          <button
+            href="/index.html"
+            class="btn btn_register btn-lg btn-secondary btn-block"
+            type="submit"
+          >
+            Register user
+          </button>
+          <a
+            href="/login.html"
+            class="d-none login_button btn btn_register btn-lg btn-success btn-block"
+            type="link"
+          >
+            Log in
+          </a>
+        </div>
         <p class="mt-5 mb-3 text-muted">© InstaBook</p>
       </form>
     </main>

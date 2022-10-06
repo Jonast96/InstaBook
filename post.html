@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post</title>
   </head>
-  <body class="post">
-    <nav class="navbar navbar-expand-lg nav-footer fixed-top px-5">
+  <body class="post bg-dark">
+    <nav class="navbar navbar-expand-lg nav-footer px-5">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -44,7 +44,7 @@
                 <a
                   class="nav-link active text-primary"
                   aria-current="page"
-                  href="#"
+                  href="index.html"
                   >Home</a
                 >
               </li>
@@ -58,9 +58,14 @@
         </div>
       </div>
     </nav>
-    <div class="container-sm post_container"></div>
+    <div class="change_post_buttons d-none">
+      <button class="btn btn-outline-primary btn-sm btn_edit">Edit</button>
+      <button class="btn btn-outline-danger btn-sm btn_delete">Delete</button>
+    </div>
+    <div
+      class="container-sm post_container d-flex align-items-center justify-content-center"
+    ></div>
 
-    
     <footer class="text-center text-primary p-4 nav-footer footer mt-auto py-3">
       © 2022 Copyright:
       <a class="text-reset fw-bold" href="index.html">InstaBook</a>
