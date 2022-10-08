@@ -56,10 +56,10 @@ body {
 }
 
 .post {
-  .post_container {
+  .min_height_100 {
     min-height: 100vh;
   }
   .post_content {
-    height: max-content;
+    max-width: 600px;
   }
 }

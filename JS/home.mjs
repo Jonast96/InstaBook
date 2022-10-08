@@ -1,14 +1,14 @@
-const postTitle = document.querySelector("#title");
+const postTitle = document.querySelector("#title")
 const postMedia = document.querySelector("#media")
 const postBody = document.querySelector(".body")
 const postForm = document.querySelector(".post_form")
 const allPostsContainer = document.querySelector(".posts_container")
 const userNotLoggedIn = document.querySelector(".sign_in")
 const profileLi = document.querySelector(".profile_link_li")
-
+const searchHtml = document.querySelector(".search_input")
 
 const baseURL = 'https://nf-api.onrender.com'
-const postUrl = `${baseURL}/api/v1/social/posts`;
+const postUrl = `${baseURL}/api/v1/social/posts`
 const allPosts = `${baseURL}/api/v1/social/posts`
 
 const userToken = localStorage.getItem("userToken")
@@ -100,7 +100,11 @@ async function displayPosts(url) {
     console.log(json)
 
 
+
+
     for (let i = 0; i < json.length; i++) {
+
+
 
 
       if (json[i].media) {
@@ -198,6 +202,10 @@ async function displayPosts(url) {
 }
 
 displayPosts(allPosts)
+
+
+
+
 
 
 

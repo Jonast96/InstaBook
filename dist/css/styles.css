@@ -11164,11 +11164,11 @@ body {
   font-size: 0.7rem;
 }
 
-.post .post_container {
+.post .min_height_100 {
   min-height: 100vh;
 }
 .post .post_content {
-  height: max-content;
+  max-width: 600px;
 }
 
 /*# sourceMappingURL=styles.css.map */
