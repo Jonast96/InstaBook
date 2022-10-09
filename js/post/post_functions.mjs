@@ -3,19 +3,21 @@
 * @param {*} name 
 */
 export function giveUserRights(postOwner) {
-    const userName = localStorage.getItem("userName")
-    const buttonContainer = document.querySelector(".change_post_buttons")
+  const userName = localStorage.getItem("userName")
+  const buttonContainer = document.querySelector(".change_post_buttons")
 
 
-    if (userName === postOwner) {
-        buttonContainer.classList.replace("d-none", "d-block")
-    }
+  if (userName === postOwner) {
+    buttonContainer.classList.replace("d-none", "d-block")
+  }
 }
 
 export function createHtml(json) {
-    const container = document.querySelector(".post_container")
+  const container = document.querySelector(".post_container")
+  const event = new Date(json.created);
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    container.innerHTML += `
+  container.innerHTML += `
         <div class="card m-4 post_content post_contentbox-shadow">
         <div class="img-container">
           <img
@@ -30,7 +32,7 @@ export function createHtml(json) {
             <div>
               <div class="d-flex">
                 <h3 class="post_title">${json.title}</h3>
-                <p class="ms-2 small_text">${json.created}</p>
+                <p class="ms-2 small_text">${event.toDateString("en-US", options)}</p>
               </div>
               <a class="text-secondary post_owner" href="#">@${json.author.name}</a>
             </div>
@@ -84,13 +86,6 @@ export function createHtml(json) {
           <p>
             ${json.body}
           </p>
-
-          <div class="d-flex justify-content-between">
-            <div>
-              <p class="post_tags">#${json.tags[0]} #${json.tags[1]} #${json.tags[2]}</p>
-            </div>
-
-          </div>
         </div>
       </div>
         `
@@ -99,21 +94,21 @@ export function createHtml(json) {
 }
 
 export async function updatePost(url, postBody) {
-    try {
-        const userToken = localStorage.getItem("userToken")
+  try {
+    const userToken = localStorage.getItem("userToken")
 
-        const postData = {
-            method: 'put',
-            headers: {
-                'Content-type': 'application/json',
-                authorization: `Bearer ${userToken}`
-            },
-            body: JSON.stringify(postBody)
-        };
-        const response = await fetch(url, postData);
-        const json = await response.json();
-        window.location.reload()
-    } catch (error) {
-        console.log(error);
-    }
+    const postData = {
+      method: 'put',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: `Bearer ${userToken}`
+      },
+      body: JSON.stringify(postBody)
+    };
+    const response = await fetch(url, postData);
+    const json = await response.json();
+    window.location.reload()
+  } catch (error) {
+    console.log(error);
+  }
 }

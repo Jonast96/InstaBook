@@ -8,15 +8,13 @@ import {
   isUserLoggedIn,
   sendUserToProfile
 } from "../utils.mjs"
-
+sendUserToProfile()
 
 const postForm = document.querySelector(".post_form")
 const baseURL = 'https://nf-api.onrender.com'
 const postUrl = `${baseURL}/api/v1/social/posts`
 const allPosts = `${baseURL}/api/v1/social/posts`
 const userToken = localStorage.getItem("userToken")
-
-
 
 postForm.onsubmit = function () {
   const postTitle = document.querySelector("#title")
@@ -55,4 +53,3 @@ async function displayPosts(url) {
 
 }
 displayPosts(allPosts)
-sendUserToProfile()

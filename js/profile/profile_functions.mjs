@@ -1,42 +1,44 @@
 export function displayUserData(e) {
-    const displayFullName = document.querySelector(".user_name")
-    const displayEmail = document.querySelector(".user_email")
-    const userFollowers = document.querySelector(".followers_counter")
-    const userFollowing = document.querySelector(".following_counter")
-    const userPostCounter = document.querySelector(".posts_counter")
+  const displayFullName = document.querySelector(".user_name")
+  const displayEmail = document.querySelector(".user_email")
+  const userFollowers = document.querySelector(".followers_counter")
+  const userFollowing = document.querySelector(".following_counter")
+  const userPostCounter = document.querySelector(".posts_counter")
 
-    const userName = localStorage.getItem("userName")
-    const userEmail = localStorage.getItem("userEmail")
+  const userName = localStorage.getItem("userName")
+  const userEmail = localStorage.getItem("userEmail")
 
-    const followers = e._count.followers;
-    const following = e._count.following;
-    const posts = e._count.posts;
-    userFollowers.innerHTML = `${followers}`
-    userFollowing.innerHTML = `${following}`
-    userPostCounter.innerHTML = `${posts}`
+  const followers = e._count.followers;
+  const following = e._count.following;
+  const posts = e._count.posts;
+  userFollowers.innerHTML = `${followers}`
+  userFollowing.innerHTML = `${following}`
+  userPostCounter.innerHTML = `${posts}`
 
-    displayFullName.innerHTML = `${userName}`
-    displayEmail.innerHTML = `${userEmail}`
+  displayFullName.innerHTML = `${userName}`
+  displayEmail.innerHTML = `${userEmail}`
 }
 
 export function createHtml(json) {
-    const container = document.querySelector(".card_container")
+  const container = document.querySelector(".card_container")
+  console.log(json)
 
-    for (let i = 0; i < json.posts.length; i++) {
-        container.innerHTML += `
+  for (let i = 0; i < json.posts.length; i++) {
+    const event = new Date(json.posts[i].created);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    container.innerHTML += `
               <div class="card  mb-4 post_content post_contentbox-shadow m-2" >
               <a href="post.html?id=${json.posts[i].id}" class="img-container"><img class="card-img-top" style="height: 500px" src="${json.posts[i].media}" data-holder-rendered="true">
               </a>
               <div class="card-body bg-light">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="d-flex">
-                      <h3 class="post_title${json.posts[i].title}</h3>
-                      <p class="ms-2 small_text${json.posts[i].created}</p>
-                    </div>
-                    <a class="text-secondary post_owner" href="#">@${json.posts[i].owner}</a>
-                  </div>
-                  <div>
+              <div class="d-flex justify-content-between">
+              <div>
+                <div class="d-flex">
+                  <h3 class="post_title">${json.posts[i].title}</h3>
+                  <p class="ms-2 small_text">${event.toDateString("en-US", options)}</p>
+                </div>
+              </div>
+              <div>
                     <button class="border-0 bg-light">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                         <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path>
@@ -60,18 +62,8 @@ export function createHtml(json) {
                   ${json.posts[i].title}
                 </p>
               
-                <div class="d-flex justify-content-between">
-                  <div class="d-flex ">
-                    <p class="post_tags me-2">#undefined</p>
-                    <p class="post_tags me-2">#undefined</p>
-                    <p class="post_tags me-2">#undefined</p>
-                  </div>
-              
-  
-                </div>
-  
                 
               </div>
               </div >`
-    }
+  }
 }
