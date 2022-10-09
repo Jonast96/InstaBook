@@ -60,11 +60,17 @@ export function searchPosts(posts) {
  * ```
  */
 export function filteredPosts(post) {
+
+
+
+
   const allPostsContainer = document.querySelector(".posts_container")
 
   allPostsContainer.innerHTML = "";
 
   post.forEach(function (post) {
+    const event = new Date(post.created);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     allPostsContainer.innerHTML += `
         <div class="card mb-4 post_content post_contentbox-shadow">
         <a href="post.html?id=${post.id}" class="img-container">
@@ -80,7 +86,7 @@ export function filteredPosts(post) {
             <div>
               <div class="d-flex">
                 <h3 class="post_title">${post.title}</h3>
-                <p class="ms-2 small_text">${post.created}</p>
+                <p class="ms-2 small_text">${event.toLocaleDateString("en-us", options)}</p>
               </div>
               <a class="text-secondary post_owner" href="#">@Owner</a>
             </div>
@@ -134,12 +140,6 @@ export function filteredPosts(post) {
           <p>
             ${post.body}
           </p>
-  
-          <div class="d-flex justify-content-between">
-            <div>
-              <p class="post_tags">#${post.tags[0]} #${post.tags[1]} #${post.tags[2]}</p>
-            </div>
-  
           </div>
         </div>
       </div>

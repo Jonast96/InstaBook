@@ -2,6 +2,11 @@ import {
   displayUserData,
   createHtml
 } from "./profile_functions.mjs"
+import {
+  isUserLoggedIn,
+  sendUserToProfile
+} from "../utils.mjs"
+sendUserToProfile()
 
 //HTML elements----------------------------------
 const logoutButton = document.querySelector(".logout_button")
