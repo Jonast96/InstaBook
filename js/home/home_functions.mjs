@@ -1,88 +1,88 @@
-const queryString = document.location.search;
-const params = new URLSearchParams(queryString);
-const id = params.get("id");
-
-const userName = localStorage.getItem("userName")
-
-
-
-const userToken = localStorage.getItem("userToken")
-const baseURL = 'https://nf-api.onrender.com'
-const postsURL = `${baseURL}/api/v1/social/posts/${id}?_author=true&_comments=true&_reactions=true`
-const updateUrl = `${baseURL}/api/v1/social/posts/${id}`
-
-const container = document.querySelector(".post_container")
-const editPostBtn = document.querySelector(".btn_edit")
-const deletePostBtn = document.querySelector(".btn_delete")
-const buttonContainer = document.querySelector(".change_post_buttons")
 
 /**
- * Checks is logged in user is the same as user who created the post
- * @param {*} name 
+ * This will send a post request to the api and create a user post
+ * @param {string} url 
+ * @param {string} postBody
+ * 
+ * ```js
+ * createPostData(API url, 
+ * {title: `postTitle.value`,
+    body: `postBody.value`,
+    media: `postMedia.value`}) 
+    ```
  */
-function giveUserRights(postOwner) {
-  if (userName === postOwner) {
-    buttonContainer.classList.replace("d-none", "d-block")
+export async function createPostData(url, postBody) {
+  try {
+    const userToken = localStorage.getItem("userToken")
+
+    const postData = {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: `Bearer ${userToken}`
+      },
+      body: JSON.stringify(postBody)
+    };
+    const response = await fetch(url, postData);
+    const json = await response.json();
+    window.location.reload()
+  } catch (error) {
+    console.log(error);
   }
 }
 
 
+/**
+ * Allows user to search through the array of posts from the API. toLowerCase is used so user can search LiKe ThiS and still get results.
+ * @param {string} posts 
+ */
+export function searchPosts(posts) {
+  const search = document.querySelector(".search_value");
 
-deletePostBtn.addEventListener("click", async () => {
-  try {
-    const postData = {
-      method: 'delete',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-    };
-    const response = await fetch(`https://nf-api.onrender.com/api/v1/social/posts/${id}`, postData);
-    window.location.href = "profile.html"
-  } catch (error) {
-    console.log(error)
-  }
-})
+  search.onkeyup = function (event) {
 
+    const searchValue = event.target.value.trim().toLowerCase();
 
+    const filteredPost = posts.filter(function (post) {
+      if (post.title.toLowerCase().includes(searchValue) || post.body.toLowerCase().includes(searchValue)) {
+        return true;
+      }
+    });
 
+    filteredPosts(filteredPost);
+  };
+}
+/**
+ * Creates HTML by looping through the array of posts
+ * @param {string} post 
+ * ```
+ * filteredPosts(array of posts)
+ * ```
+ */
+export function filteredPosts(post) {
+  const allPostsContainer = document.querySelector(".posts_container")
 
+  allPostsContainer.innerHTML = "";
 
-
-async function displayPost(url) {
-  try {
-
-    const postData = {
-      method: 'get',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-    };
-    const response = await fetch(url, postData);
-    const json = await response.json();
-    console.log(json)
-
-    giveUserRights(json.author.name)
-
-    container.innerHTML += `
-        <div class="card m-4 post_content post_contentbox-shadow">
-        <div class="img-container">
+  post.forEach(function (post) {
+    allPostsContainer.innerHTML += `
+        <div class="card mb-4 post_content post_contentbox-shadow">
+        <a href="post.html?id=${post.id}" class="img-container">
           <img
             class="card-img-top"
             style="height: 500px"
-            src="${json.media}"
+            src="${post.media}"
             data-holder-rendered="true"
           />
-        </div>
+        </a>
         <div class="card-body bg-light">
           <div class="d-flex justify-content-between">
             <div>
               <div class="d-flex">
-                <h3 class="post_title">${json.title}</h3>
-                <p class="ms-2 small_text">${json.created}</p>
+                <h3 class="post_title">${post.title}</h3>
+                <p class="ms-2 small_text">${post.created}</p>
               </div>
-              <a class="text-secondary post_owner" href="#">@${json.author.name}</a>
+              <a class="text-secondary post_owner" href="#">@Owner</a>
             </div>
             <div>
               <button class="border-0 bg-light">
@@ -99,7 +99,7 @@ async function displayPost(url) {
                   />
                 </svg>
               </button>
-
+  
               <button class="border-0 bg-light">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ async function displayPost(url) {
                   />
                 </svg>
               </button>
-
+  
               <button class="border-0 bg-light">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -132,70 +132,19 @@ async function displayPost(url) {
             </div>
           </div>
           <p>
-            ${json.body}
+            ${post.body}
           </p>
-
+  
           <div class="d-flex justify-content-between">
             <div>
-              <p class="post_tags">#${json.tags[0]} #${json.tags[1]} #${json.tags[2]}</p>
+              <p class="post_tags">#${post.tags[0]} #${post.tags[1]} #${post.tags[2]}</p>
             </div>
-
+  
           </div>
         </div>
       </div>
-        `
+  `
 
 
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-displayPost(postsURL)
-
-
-async function createPostData(url, postBody) {
-  try {
-
-    const postData = {
-      method: 'put',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-      body: JSON.stringify(postBody)
-    };
-    const response = await fetch(url, postData);
-    console.log(response.error)
-    console.log(postData)
-    const json = await response.json();
-    console.log(json)
-    window.location.reload()
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const postTitle = document.querySelector("#title")
-const postBody = document.querySelector(".body")
-const postMedia = document.querySelector("#media")
-const postForm = document.querySelector(".post_form")
-
-
-postForm.onsubmit = function () {
-
-  console.log("test")
-
-  event.preventDefault()
-
-
-  const postsomething = {
-    title: `${postTitle.value}`,
-    body: `${postBody.value}`,
-    media: `${postMedia.value}`
-  }
-
-
-  createPostData(updateUrl, postsomething)
-
+  });
 }

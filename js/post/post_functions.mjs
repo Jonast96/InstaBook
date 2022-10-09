@@ -1,132 +1,38 @@
-const postTitle = document.querySelector("#title")
-const postMedia = document.querySelector("#media")
-const postBody = document.querySelector(".body")
-const postForm = document.querySelector(".post_form")
-const allPostsContainer = document.querySelector(".posts_container")
-const userNotLoggedIn = document.querySelector(".sign_in")
-const profileLi = document.querySelector(".profile_link_li")
-const searchHtml = document.querySelector(".search_input")
-
-const baseURL = 'https://nf-api.onrender.com'
-const postUrl = `${baseURL}/api/v1/social/posts`
-const allPosts = `${baseURL}/api/v1/social/posts`
-
-const userToken = localStorage.getItem("userToken")
-
-
 /**
- * Checks if user is logged in
- * @returns boolean
- * 
- */
-function isUserLoggedIn() {
-  if (userToken) {
-    return true
-  } else {
-    return false
-  }
-}
-isUserLoggedIn()
+* Checks is logged in user is the same as user who created the post
+* @param {*} name 
+*/
+export function giveUserRights(postOwner) {
+    const userName = localStorage.getItem("userName")
+    const buttonContainer = document.querySelector(".change_post_buttons")
 
 
-function sendUserToProfile() {
-  if (isUserLoggedIn() === true) {
-    profileLi.innerHTML = `
-    <a class="nav-link text-primary" href="/profile.html"
-    >Profile/Login</a
-  >`
-
-    userNotLoggedIn.classList.replace("d-block", "d-none")
-  } else {
-    console.log("user is not logged in")
-  }
-}
-sendUserToProfile()
-
-async function createPostData(url, postBody) {
-  try {
-
-    const postData = {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-      body: JSON.stringify(postBody)
-    };
-    const response = await fetch(url, postData);
-    console.log(postData)
-    const json = await response.json();
-    console.log(json)
-    window.location.reload()
-  } catch (error) {
-    console.log(error);
-  }
+    if (userName === postOwner) {
+        buttonContainer.classList.replace("d-none", "d-block")
+    }
 }
 
+export function createHtml(json) {
+    const container = document.querySelector(".post_container")
 
-postForm.onsubmit = function () {
-
-  event.preventDefault()
-
-
-  const postsomething = {
-    title: `${postTitle.value}`,
-    body: `${postBody.value}`,
-    media: `${postMedia.value}`
-  }
-
-
-  createPostData(postUrl, postsomething)
-
-}
-
-
-
-
-async function displayPosts(url) {
-
-  try {
-    const postData = {
-      method: 'get',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-    };
-    const response = await fetch(url, postData);
-    console.log(postData)
-    const json = await response.json();
-    console.log(json)
-
-
-
-
-    for (let i = 0; i < json.length; i++) {
-
-
-
-
-      if (json[i].media) {
-        allPostsContainer.innerHTML +=
-          `
-        <div class="card mb-4 post_content post_contentbox-shadow">
-        <a href="post.html?id=${json[i].id}" class="img-container">
+    container.innerHTML += `
+        <div class="card m-4 post_content post_contentbox-shadow">
+        <div class="img-container">
           <img
             class="card-img-top"
             style="height: 500px"
-            src="${json[i].media}"
+            src="${json.media}"
             data-holder-rendered="true"
           />
-        </a>
+        </div>
         <div class="card-body bg-light">
           <div class="d-flex justify-content-between">
             <div>
               <div class="d-flex">
-                <h3 class="post_title">${json[i].title}</h3>
-                <p class="ms-2 small_text">${json[i].created}</p>
+                <h3 class="post_title">${json.title}</h3>
+                <p class="ms-2 small_text">${json.created}</p>
               </div>
-              <a class="text-secondary post_owner" href="#">@Owner</a>
+              <a class="text-secondary post_owner" href="#">@${json.author.name}</a>
             </div>
             <div>
               <button class="border-0 bg-light">
@@ -176,39 +82,38 @@ async function displayPosts(url) {
             </div>
           </div>
           <p>
-            ${json[i].body}
+            ${json.body}
           </p>
 
           <div class="d-flex justify-content-between">
             <div>
-              <p class="post_tags">#${json[i].tags[0]} #${json[i].tags[1]} #${json[i].tags[2]}</p>
+              <p class="post_tags">#${json.tags[0]} #${json.tags[1]} #${json.tags[2]}</p>
             </div>
 
           </div>
         </div>
       </div>
-`
-      }
+        `
 
-
-
-
-
-    }
-  } catch (error) {
-    console.log(error);
-  }
 
 }
 
-displayPosts(allPosts)
+export async function updatePost(url, postBody) {
+    try {
+        const userToken = localStorage.getItem("userToken")
 
-
-
-
-
-
-
-
-
-
+        const postData = {
+            method: 'put',
+            headers: {
+                'Content-type': 'application/json',
+                authorization: `Bearer ${userToken}`
+            },
+            body: JSON.stringify(postBody)
+        };
+        const response = await fetch(url, postData);
+        const json = await response.json();
+        window.location.reload()
+    } catch (error) {
+        console.log(error);
+    }
+}
