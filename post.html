@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/dist/css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post</title>
+  </head>
+  <body class="post bg-dark">
+    <nav class="navbar navbar-expand-lg nav-footer px-5">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarSupportedContent"
+        >
+          <div>
+            <h3>
+              <a class="text-secondary" href="/index.html">InstaBook</a>
+            </h3>
+          </div>
+
+          <div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-primary"
+                  aria-current="page"
+                  href="/index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item profile_link_li">
+                <a class="nav-link text-primary" href="/login.html"
+                  >Profile/Login</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="change_post_buttons d-none">
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm btn_edit"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        edit
+      </button>
+      <button class="btn btn-outline-danger btn-sm btn_delete">Delete</button>
+    </div>
+
+    <div class="min_height_100 row align-items-center justify-content-center">
+      <div
+        class="container-sm post_container d-flex justify-content-center"
+      ></div>
+    </div>
+    <p class="d-block text-primary sign_in">
+      Please <a href="/login.html">sign in</a> in to see posts
+    </p>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" class="post_form">
+              <div class="mb-2">
+                <label for="title" class="form-label text-dark">Title</label>
+                <input type="text" class="form-control" id="title" />
+                <div id="" class="form-text">Write a title for your post</div>
+              </div>
+              <div class="mb-2">
+                <label for="media" class="form-label text-dark"
+                  >Image URL</label
+                >
+                <input type="text" class="form-control" id="media" />
+                <div id="" class="form-text">Paste an image url</div>
+              </div>
+              <div class="mb-2">
+                <label
+                  for="exampleFormControlTextarea1"
+                  class="form-label text-dark"
+                  >Post body</label
+                >
+
+                <textarea
+                  class="form-control mt-2 body"
+                  id="exampleFormControlTextarea1"
+                  rows="10"
+                ></textarea>
+                <div id="" class="form-text">Write a body for your post</div>
+              </div>
+              <div class="d-block">
+                <label for="tags" class="form-label text-dark">Tags</label>
+              </div>
+              <div class="d-flex">
+                <input type="text" class="form-control tag1 ms-1" id="tags" />
+                <input type="text" class="form-control tag2 ms-1" id="tags" />
+                <input type="text" class="form-control tag3 ms-1" id="tags" />
+              </div>
+              <div id="" class="form-text">Give your post tags</div>
+              <div class="d-flex justify-content-center mt-2"></div>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-center text-primary p-4 nav-footer footer mt-auto py-3">
+      © 2022 Copyright:
+      <a class="text-reset fw-bold" href="index.html">InstaBook</a>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/js/post/post.mjs"></script>
+  </body>
+</html>
