@@ -6,20 +6,19 @@ import {
 
 import {
   isUserLoggedIn,
-  sendUserToProfile
-} from "../utils.mjs";
+  sendUserToProfile,
+  getApiCall,
+  baseURL,
+  loggedInOrNot
 
+} from "../utils.mjs";
 sendUserToProfile()
 
 const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 const id = params.get("id");
 const userToken = localStorage.getItem("userToken")
-
-
-const baseURL = 'https://nf-api.onrender.com'
 const postsURL = `${baseURL}/api/v1/social/posts/${id}?_author=true&_comments=true&_reactions=true`
-const updateUrl = `${baseURL}/api/v1/social/posts/${id}`
 
 
 const deletePostBtn = document.querySelector(".btn_delete")
@@ -39,25 +38,18 @@ deletePostBtn.addEventListener("click", async () => {
   }
 })
 
-async function displayPost(url) {
+async function displayPost() {
   try {
-    const postData = {
-      method: 'get',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-    };
-    const response = await fetch(url, postData);
-    const json = await response.json();
-
+    const json = await getApiCall(postsURL)
     giveUserRights(json.author.name)
     createHtml(json)
+    loggedInOrNot()
+
   } catch (error) {
     console.log(error)
   }
 }
-displayPost(postsURL)
+displayPost()
 
 const postForm = document.querySelector(".post_form")
 postForm.onsubmit = function () {
@@ -71,5 +63,5 @@ postForm.onsubmit = function () {
     body: `${postBody.value}`,
     media: `${postMedia.value}`
   }
-  updatePost(updateUrl, postDetails)
+  updatePost(postsURL, postDetails)
 }

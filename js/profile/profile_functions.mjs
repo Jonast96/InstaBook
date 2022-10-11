@@ -21,7 +21,6 @@ export function displayUserData(e) {
 
 export function createHtml(json) {
   const container = document.querySelector(".card_container")
-  console.log(json)
 
   for (let i = 0; i < json.posts.length; i++) {
     const event = new Date(json.posts[i].created);

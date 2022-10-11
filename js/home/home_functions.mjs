@@ -49,7 +49,7 @@ export function searchPosts(posts) {
       }
     });
 
-    filteredPosts(filteredPost);
+    createHtml(filteredPost);
   };
 }
 /**
@@ -59,7 +59,7 @@ export function searchPosts(posts) {
  * filteredPosts(array of posts)
  * ```
  */
-export function filteredPosts(post) {
+export function createHtml(post) {
 
 
 
@@ -148,3 +148,5 @@ export function filteredPosts(post) {
 
   });
 }
+
+
