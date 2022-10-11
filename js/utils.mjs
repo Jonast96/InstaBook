@@ -33,3 +33,38 @@ export function sendUserToProfile() {
         console.log("user is not logged in")
     }
 }
+
+
+
+/**
+ * GET call
+ * @param {*} url 
+ * @returns 
+ */
+export async function getApiCall(url) {
+    const userToken = localStorage.getItem("userToken")
+
+    const postData = {
+        method: 'get',
+        headers: {
+            'Content-type': 'application/json',
+            authorization: `Bearer ${userToken}`
+        },
+    };
+    const response = await fetch(url, postData);
+    const json = await response.json();
+    return json
+}
+
+export const baseURL = 'https://nf-api.onrender.com'
+
+
+
+export function loggedInOrNot() {
+    const userToken = localStorage.getItem("userToken")
+
+    if (!userToken) {
+        console.log("not logged in")
+        window.location.href = "login.html"
+    }
+}

@@ -1,20 +1,21 @@
 import {
   createPostData,
   searchPosts,
-  filteredPosts
+  createHtml
 } from './home_functions.mjs';
 
 import {
   isUserLoggedIn,
-  sendUserToProfile
+  sendUserToProfile,
+  getApiCall,
+  baseURL,
+  loggedInOrNot
 } from "../utils.mjs"
 sendUserToProfile()
 
 const postForm = document.querySelector(".post_form")
-const baseURL = 'https://nf-api.onrender.com'
 const postUrl = `${baseURL}/api/v1/social/posts`
 const allPosts = `${baseURL}/api/v1/social/posts`
-const userToken = localStorage.getItem("userToken")
 
 postForm.onsubmit = function () {
   const postTitle = document.querySelector("#title")
@@ -26,30 +27,21 @@ postForm.onsubmit = function () {
     body: `${postBody.value}`,
     media: `${postMedia.value}`
   }
-  createPostData(postUrl, userInput)
+  createPostData(allPosts, userInput)
 }
-async function displayPosts(url) {
 
+
+async function displayPosts() {
   try {
-    const postData = {
-      method: 'get',
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Bearer ${userToken}`
-      },
-    };
-    const response = await fetch(url, postData);
-    const json = await response.json();
-
-    filteredPosts(json)
+    const json = await getApiCall(allPosts)
+    loggedInOrNot()
+    createHtml(json)
     searchPosts(json)
-
-
-
-
   } catch (error) {
     console.log(error);
   }
-
 }
-displayPosts(allPosts)
+displayPosts()
+
+
+

@@ -4,7 +4,9 @@ import {
 } from "./profile_functions.mjs"
 import {
   isUserLoggedIn,
-  sendUserToProfile
+  sendUserToProfile,
+  baseURL,
+  loggedInOrNot
 } from "../utils.mjs"
 sendUserToProfile()
 
@@ -15,13 +17,11 @@ const logoutButton = document.querySelector(".logout_button")
 //Local Storage------------------------------------
 const userName = localStorage.getItem("userName")
 const userToken = localStorage.getItem("userToken")
-const userEmail = localStorage.getItem("userEmail")
 //--------------------------------------------------
 
 //URL for api call--------------------------------
-const baseUrl = "https://nf-api.onrender.com"
-const profileUrl = `${baseUrl}/api/v1/social/profiles/${userName}`
-const userPosts = `${baseUrl}/api/v1/social/profiles/${userName}?_posts=true&_following=true&_followers=true`
+const profileUrl = `${baseURL}/api/v1/social/profiles/${userName}`
+const userPosts = `${baseURL}/api/v1/social/profiles/${userName}?_posts=true&_following=true&_followers=true`
 //------------------------------------------------
 
 async function getUsersDataAndDisplay(url) {
@@ -53,6 +53,8 @@ async function displayUserPosts(url) {
     const response = await fetch(url, getData)
     const json = await response.json()
     createHtml(json)
+    loggedInOrNot()
+
 
   } catch (error) {
     console.log(error)
