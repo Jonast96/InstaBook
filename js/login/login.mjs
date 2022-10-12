@@ -30,7 +30,7 @@ loginForm.onsubmit = async function () {
         const userToLogin = {
 
             email: `${emailValue.value.toLowerCase()}`,
-            password: `${passwordValue.value.toLowerCase()}`
+            password: `${passwordValue.value}`
         }
         const postData = {
             method: 'POST',
