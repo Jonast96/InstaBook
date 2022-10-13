@@ -7,7 +7,8 @@ const registerUrl = `${baseURL}/api/v1/social/auth/register`;
 /**
  * Post user data to API. Used on form submit.
  * @param {string} url 
- * @param {any} userData 
+ * @param {object} userData 
+ * @example
  * ```js
  * registerUser(registerUrl, userToRegister)
  * ```
