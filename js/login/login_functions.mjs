@@ -1,7 +1,7 @@
 /**
  * 
  * Stores login information in local storage, 
- * @param {*} json 
+ * @param {object} x The user profile object 
  */
 export function sendUserDataToLocalStorage(x) {
     const userToken = x.accessToken;

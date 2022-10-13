@@ -12,19 +12,9 @@ const loginUrl = `${baseUrl}/api/v1/social/auth/login`
 const wrongUsername = document.querySelector(".wrong_Email")
 
 /**
- * Creates userToLogin info.
- * Form validation and checks database. If username and password combination is stored on the api, user will be redirected to profile page.
- * 
- * ```js
- *  userToLogin = {
- * 
-        email: `${emailValue.value}`,
-        password: `${passwordValue.value}`
-    }
- * 
- * ```
+ * @param {SubmitEvent} event The event object
  */
-loginForm.onsubmit = async function () {
+export async function onSubmit(event) {
     try {
         event.preventDefault()
         const userToLogin = {
@@ -54,3 +44,5 @@ loginForm.onsubmit = async function () {
 
 }
 
+
+loginForm.onsubmit = onSubmit
