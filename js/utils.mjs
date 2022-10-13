@@ -38,8 +38,8 @@ export function sendUserToProfile() {
 
 /**
  * GET call
- * @param {*} url 
- * @returns 
+ * @param {string} url 
+ * @returns {object | array | undefined}
  */
 export async function getApiCall(url) {
     const userToken = localStorage.getItem("userToken")
