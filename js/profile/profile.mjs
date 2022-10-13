@@ -3,7 +3,6 @@ import {
   createHtml
 } from "./profile_functions.mjs"
 import {
-  isUserLoggedIn,
   sendUserToProfile,
   baseURL,
   loggedInOrNot
