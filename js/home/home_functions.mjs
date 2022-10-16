@@ -1,15 +1,8 @@
 
 /**
  * This will send a post request to the api and create a user post
- * @param {string} url 
- * @param {string} postBody
- * 
- * ```js
- * createPostData(API url, 
- * {title: `postTitle.value`,
-    body: `postBody.value`,
-    media: `postMedia.value`}) 
-    ```
+ * @param {string} url api ulr 
+ * @param {any} postBody user input of title, media and body
  */
 export async function createPostData(url, postBody) {
   try {
@@ -34,7 +27,7 @@ export async function createPostData(url, postBody) {
 
 /**
  * Allows user to search through the array of posts from the API. toLowerCase is used so user can search LiKe ThiS and still get results.
- * @param {string} posts 
+ * @param {string} posts array of posts
  */
 export function searchPosts(posts) {
   const search = document.querySelector(".search_value");
@@ -54,10 +47,7 @@ export function searchPosts(posts) {
 }
 /**
  * Creates HTML by looping through the array of posts
- * @param {string} post 
- * ```
- * filteredPosts(array of posts)
- * ```
+ * @param {string} post array of posts
  */
 export function createHtml(post) {
 

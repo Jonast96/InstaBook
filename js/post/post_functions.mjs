@@ -1,17 +1,20 @@
 /**
 * Checks is logged in user is the same as user who created the post
-* @param {*} name 
+* @param {string} postOwner single post data
 */
 export function giveUserRights(postOwner) {
   const userName = localStorage.getItem("userName")
   const buttonContainer = document.querySelector(".change_post_buttons")
-
 
   if (userName === postOwner) {
     buttonContainer.classList.replace("d-none", "d-block")
   }
 }
 
+
+/** populates container with post data
+ * @param {string} json array of posts
+ */
 export function createHtml(json) {
   const container = document.querySelector(".post_container")
   const event = new Date(json.created);
@@ -94,6 +97,12 @@ export function createHtml(json) {
 
 }
 
+
+/**
+ * sends put request and updates post
+ * @param {string} url api ulr 
+ * @param {any} postBody user input of title, media and body
+ */
 export async function updatePost(url, postBody) {
   try {
     const userToken = localStorage.getItem("userToken")

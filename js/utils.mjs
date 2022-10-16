@@ -1,10 +1,6 @@
 /**
  * Checks if a user is logged in by checking is a user token is stored in the localStorage
  * @returns {boolean}
- * ```js
- * //if true, user is logged in
- * //if false, user is not logged in
- * ```
  */
 export function isUserLoggedIn() {
     const userToken = localStorage.getItem("userToken")
@@ -34,12 +30,10 @@ export function sendUserToProfile() {
     }
 }
 
-
-
 /**
  * GET call
- * @param {*} url 
- * @returns 
+ * @param {string} url 
+ * @returns {object | array | undefined}
  */
 export async function getApiCall(url) {
     const userToken = localStorage.getItem("userToken")
@@ -58,8 +52,9 @@ export async function getApiCall(url) {
 
 export const baseURL = 'https://nf-api.onrender.com'
 
-
-
+/**
+ * Redirects user depending on if the user is logged in or not
+ */
 export function loggedInOrNot() {
     const userToken = localStorage.getItem("userToken")
 

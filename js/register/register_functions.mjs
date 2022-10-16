@@ -6,11 +6,8 @@ const registerUrl = `${baseURL}/api/v1/social/auth/register`;
 
 /**
  * Post user data to API. Used on form submit.
- * @param {string} url 
- * @param {any} userData 
- * ```js
- * registerUser(registerUrl, userToRegister)
- * ```
+ * @param {string} url api url 
+ * @param {any} userData user input 
  */
 async function registerUser(url, userData) {
     try {
@@ -35,6 +32,9 @@ async function registerUser(url, userData) {
     }
 }
 
+/**
+ * Creates object of user data
+ */
 export function storeUserData() {
     const emailValue = document.querySelector("#emailValue")
     const nameValue = document.querySelector("#nameValue")
