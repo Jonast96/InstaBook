@@ -1,5 +1,4 @@
 /**
- * 
  * Stores login information in local storage, 
  * @param {*} json 
  */

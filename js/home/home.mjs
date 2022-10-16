@@ -31,7 +31,6 @@ postForm.onsubmit = function () {
   createPostData(allPosts, userInput)
 }
 
-
 async function displayPosts() {
   try {
     const json = await getApiCall(allPosts)
@@ -44,6 +43,3 @@ async function displayPosts() {
   }
 }
 displayPosts()
-
-
-

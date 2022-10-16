@@ -1,3 +1,7 @@
+/**
+ * populates profile page with data from currently logged in user
+ * @param {string} e array of profile data
+ */
 export function displayUserData(e) {
   const displayFullName = document.querySelector(".user_name")
   const displayEmail = document.querySelector(".user_email")
@@ -18,7 +22,10 @@ export function displayUserData(e) {
   displayFullName.innerHTML = `${userName}`
   displayEmail.innerHTML = `${userEmail}`
 }
-
+/**
+ * makes a list of posts posted by the currently logged in user
+ * @param {string} json array of profile data 
+ */
 export function createHtml(json) {
   const container = document.querySelector(".card_container")
 

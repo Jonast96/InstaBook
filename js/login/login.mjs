@@ -14,15 +14,6 @@ const wrongUsername = document.querySelector(".wrong_Email")
 /**
  * Creates userToLogin info.
  * Form validation and checks database. If username and password combination is stored on the api, user will be redirected to profile page.
- * 
- * ```js
- *  userToLogin = {
- * 
-        email: `${emailValue.value}`,
-        password: `${passwordValue.value}`
-    }
- * 
- * ```
  */
 loginForm.onsubmit = async function () {
     try {
