@@ -61,9 +61,6 @@ export function searchPosts(posts) {
  */
 export function createHtml(post) {
 
-
-
-
   const allPostsContainer = document.querySelector(".posts_container")
 
   allPostsContainer.innerHTML = "";
@@ -71,7 +68,8 @@ export function createHtml(post) {
   post.forEach(function (post) {
     const event = new Date(post.created);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    allPostsContainer.innerHTML += `
+    if (post.media) {
+      allPostsContainer.innerHTML += `
         <div class="card mb-4 post_content post_contentbox-shadow">
         <a href="post.html?id=${post.id}" class="img-container">
           <img
@@ -88,7 +86,7 @@ export function createHtml(post) {
                 <h3 class="post_title">${post.title}</h3>
                 <p class="ms-2 small_text">${event.toLocaleDateString("en-us", options)}</p>
               </div>
-              <a class="text-secondary post_owner" href="#">@Owner</a>
+              <a class="text-secondary post_owner" href="profile.html?user=${post.author.name}">@${post.author.name}</a>
             </div>
             <div>
               <button class="border-0 bg-light">
@@ -144,6 +142,9 @@ export function createHtml(post) {
         </div>
       </div>
   `
+
+    }
+
 
 
   });

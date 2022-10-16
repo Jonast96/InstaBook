@@ -1,4 +1,8 @@
-Tags
-filter posts
-jsDocs
-Time
+Post thumbnails @owner text should be replaced with author.name //
+
+Issues with images. If no image is provided this can be
+removed from the request. //
+
+Create post error handling, user is not alerted if this goes wrong //
+
+Clicking on an author name should take you to their profile //
