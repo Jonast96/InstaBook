@@ -5,8 +5,8 @@ export function displayUserData(e) {
   const userFollowing = document.querySelector(".following_counter")
   const userPostCounter = document.querySelector(".posts_counter")
 
-  const userName = localStorage.getItem("userName")
-  const userEmail = localStorage.getItem("userEmail")
+  const userName = e.name
+  const userEmail = e.email
 
   const followers = e._count.followers;
   const following = e._count.following;
@@ -66,3 +66,4 @@ export function createHtml(json) {
               </div >`
   }
 }
+

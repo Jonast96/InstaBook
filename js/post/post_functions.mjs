@@ -34,7 +34,8 @@ export function createHtml(json) {
                 <h3 class="post_title">${json.title}</h3>
                 <p class="ms-2 small_text">${event.toDateString("en-US", options)}</p>
               </div>
-              <a class="text-secondary post_owner" href="#">@${json.author.name}</a>
+              <a class="text-secondary post_owner" href="profile.html?user=${json.author.name}">@${json.author.name}</a>
+
             </div>
             <div>
               <button class="border-0 bg-light">

@@ -15,7 +15,8 @@ sendUserToProfile()
 
 const postForm = document.querySelector(".post_form")
 const postUrl = `${baseURL}/api/v1/social/posts`
-const allPosts = `${baseURL}/api/v1/social/posts`
+const allPosts = `${baseURL}/api/v1/social/posts/?_author=true&_comments=true&_reactions=true`
+
 
 postForm.onsubmit = function () {
   const postTitle = document.querySelector("#title")
@@ -34,6 +35,7 @@ postForm.onsubmit = function () {
 async function displayPosts() {
   try {
     const json = await getApiCall(allPosts)
+    console.log(json)
     loggedInOrNot()
     createHtml(json)
     searchPosts(json)
