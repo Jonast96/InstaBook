@@ -11130,12 +11130,20 @@ body {
   height: 100vh;
 }
 
+.profile_page .post_content {
+  max-width: 400px;
+}
 .profile_page .profile_info {
   background-color: #272727;
 }
-.profile_page .profile_info img {
-  max-width: 250px;
+.profile_page .profile_info .img_container {
+  width: 250px;
   height: 250px;
+}
+.profile_page .profile_info img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
 }
 
 .card-img-top {
@@ -11150,6 +11158,17 @@ body {
 
 .nav-footer {
   background-color: #101c27;
+}
+
+.small_text {
+  font-size: 0.7rem;
+}
+
+.post .min_height_100 {
+  min-height: 100vh;
+}
+.post .post_content {
+  max-width: 600px;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -8,7 +8,7 @@
     <title>Profile</title>
   </head>
   <body class="profile_page bg-dark">
-    <nav class="navbar navbar-expand-lg nav-footer fixed-top px-5">
+    <nav class="navbar navbar-expand-lg nav-footer px-5">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -30,25 +30,18 @@
               <a class="text-secondary" href="/index.html">InstaBook</a>
             </h3>
           </div>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
+
           <div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a
                   class="nav-link active text-primary"
                   aria-current="page"
-                  href="index.html"
+                  href="/index.html"
                   >Home</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item profile_link_li">
                 <a class="nav-link text-primary" href="/login.html"
                   >Profile/Login</a
                 >
@@ -61,21 +54,27 @@
 
     <main>
       <div class="container">
+        <p class="d-block text-primary sign_in">
+          Please <a href="/login.html">sign in</a> in to see posts
+        </p>
         <div
           class="rounded profile_info d-flex flex-wrap justify-content-between mt-6"
         >
           <div class="col-md-4 d-flex row justify-content-center p-2">
-            <img src="/images/bæææ.jpg" class="rounded-circle" alt="" />
+            <div class="img_container">
+              <img src="/images/profile.png" class="" alt="" />
+            </div>
             <div class="d-flex justify-content-center mt-2">
-              <button class="btn btn-primary">Edit profile</button>
+              <button class="btn btn-danger d-none logout_button">
+                log out
+              </button>
             </div>
           </div>
           <div class="d-flex row">
             <div>
               <ul class="list-group">
-                <li class="list-group-item text-primary">FirstName LastName</li>
-                <li class="list-group-item text-primary">Some more details</li>
-                <li class="list-group-item text-primary">Even more details</li>
+                <li class="list-group-item text-primary user_name">name</li>
+                <li class="list-group-item text-primary user_email">email</li>
               </ul>
             </div>
 
@@ -83,20 +82,23 @@
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item text-primary">
                   Followers
-                  <span class="badge badge-primary badge-pill text-secondary"
+                  <span
+                    class="followers_counter badge badge-primary badge-pill text-secondary"
                     >2121</span
                   >
                 </li>
                 <li class="list-group-item text-primary">
-                  Friends
-                  <span class="badge badge-primary badge-pill text-secondary"
-                    >2</span
+                  Following
+                  <span
+                    class="following_counter badge badge-primary badge-pill text-secondary"
+                    >22122</span
                   >
                 </li>
                 <li class="list-group-item text-primary">
-                  Following
-                  <span class="badge badge-primary badge-pill text-secondary"
-                    >22122</span
+                  Posts
+                  <span
+                    class="posts_counter badge badge-primary badge-pill text-secondary"
+                    >2</span
                   >
                 </li>
               </ul>
@@ -113,211 +115,20 @@
             explicabo! Asperiores amet est eaque voluptas?
           </p>
         </div>
-        <div class="row mt-3 mb-3 text-center">
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/kremmerholmen.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/vaffel.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/katt.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/biffbea.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/fugl.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card bg-light mb-4 box-shadow">
-              <img
-                class="card-img-top"
-                src="/images/båthavn.jpg"
-                data-holder-rendered="true"
-              />
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio vitae modi enim quos soluta expedita provident, sit quo,
-                  dolorum, voluptas inventore magni! Sequi, voluptatum maiores.
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div
+          class="card_container d-flex flex-wrap justify-content-center"
+        ></div>
       </div>
     </main>
-    <div class="text-center text-primary p-4 nav-footer">
+    <footer class="text-center text-primary p-4 nav-footer footer mt-auto py-3">
       © 2022 Copyright:
       <a class="text-reset fw-bold" href="index.html">InstaBook</a>
-    </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/JS/profile/profile.mjs"></script>
   </body>
 </html>
